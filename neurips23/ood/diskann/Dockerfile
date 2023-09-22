@@ -11,7 +11,7 @@ WORKDIR /home/app/DiskANN
 RUN pip3 install virtualenv build
 RUN python3 -m build
 # <<<<<<< HEAD
-=======
+# =======
 # RUN echo $(ls /home/app/DiskANN/dist)
 # >>>>>>> ee9924e54e0a72d152bfa5be074d4eae5d235bab
 RUN pip install dist/diskannpy-0.5.0rc2-cp310-cp310-linux_x86_64.whl
