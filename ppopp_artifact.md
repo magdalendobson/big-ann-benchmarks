@@ -38,7 +38,6 @@ python3.10 run.py --algorithm ParPyNNDescent --dataset random-xs --definitions a
 ```
 
 TODO add HNSW
-TODO add more than one search option to generate plots
 
 Now, generate a plot of results:
 
