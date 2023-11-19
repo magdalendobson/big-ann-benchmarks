@@ -95,8 +95,11 @@ def index_size(attrs):
 
 
 def build_time(attrs):
+    print("Threads: ", attrs.get("threads", -1))
     return attrs.get("build_time", -1)
 
+def threads(attrs):
+    return int(attrs.get("threads", -1))
 
 def dist_computations(nq, attrs):
     return attrs.get("dist_comps", 0) / (attrs['run_count'] * nq)
@@ -167,6 +170,11 @@ all_metrics = {
     "search_times": {
         "description": "List of consecutive search times for the same run parameter",
         "function": lambda true_nn, run_nn, metrics, run_attrs: run_attrs.get("search_times",[]), 
+        "worst": float("inf")
+    },
+    "threads": {
+        "description": "Number of threads",
+        "function": lambda true_nn, run_nn, metrics, run_attrs: threads(run_attrs), # noqa
         "worst": float("inf")
     },
 

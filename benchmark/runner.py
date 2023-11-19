@@ -88,6 +88,8 @@ def run(definition, dataset, count, run_count, rebuild,
                                    index_prefix + component, sas_string)
         else:
             print("Starting query")
+            print("Threads at query time: ", os.environ.get('PARLAY_NUM_THREADS'))
+            threads = os.environ.get('PARLAY_NUM_THREADS')
             query_argument_groups = definition.query_argument_groups
             # Make sure that algorithms with no query argument groups still get run
             # once by providing them with a single, empty, harmless group
@@ -110,6 +112,7 @@ def run(definition, dataset, count, run_count, rebuild,
                 descriptor["index_size"] = index_size
                 descriptor["algo"] = definition.algorithm
                 descriptor["dataset"] = dataset
+                descriptor["threads"] = int(threads)
                 if power_capture.enabled():
                     if not private_query:
                         X = ds.get_queries()

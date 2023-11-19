@@ -65,6 +65,9 @@ def compute_metrics(true_nn, res, metric_1, metric_2,
             true_nn, run_nn, metrics_cache, properties)
         metric_2_value = metrics[metric_2]['function'](
             true_nn, run_nn, metrics_cache, properties)
+        
+        print(metric_1_value)
+        print(metric_2_value)
 
         print('%3d: %80s %12.3f %12.3f' %
               (i, algo_name, metric_1_value, metric_2_value))
@@ -129,12 +132,14 @@ def compute_metrics_all_runs(dataset, dataset_name, res, recompute=False,
             print('Recomputing metrics, clearing cache')
             del run['metrics']
         metrics_cache = get_or_create_metrics(run)
-
+        threads = properties['threads']
+        print("Threads: ", threads)
         dataset = properties['dataset']
         try:
             dataset = dataset.decode()
             algo = algo.decode()
             algo_name = algo_name.decode()
+            
         except:
             pass
 
@@ -143,6 +148,7 @@ def compute_metrics_all_runs(dataset, dataset_name, res, recompute=False,
             'parameters': algo_name,
             'dataset': dataset if neurips23track != 'streaming' else dataset + '(' + os.path.split(runbook_path)[-1] + ')',
             'count': properties['count'],
+            'threads': threads,
         }
         for name, metric in metrics.items():
             if search_type == "knn" and name == "ap" or\

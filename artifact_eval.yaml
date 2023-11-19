@@ -9,7 +9,7 @@ random-xs:
           args: |
               [{"R":32, "L":64, "alpha":1.2, "two_pass":0}]
           query-args: |
-            [{"Ls":50}]
+            [{"Ls":50}, {"Ls":100}]
     ParHCNNG:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.hcnng
@@ -20,7 +20,7 @@ random-xs:
           args: |
               [{"mst_deg":3, "num_clusters":15, "cluster_size":1000}]
           query-args: |
-            [{"Ls":50}]
+            [{"Ls":50}, {"Ls":100}]
     ParPyNNDescent:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.pynndescent
@@ -31,63 +31,8 @@ random-xs:
           args: |
               [{"max_deg":30, "num_clusters":10, "cluster_size":100, "alpha":1.0, "delta":0.05}]
           query-args: |
-            [{"Ls":50}]
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ32_128,IVF1024_HNSW32,PQ32"
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-              "nprobe=2,quantizer_efSearch=4",
-              "nprobe=2,quantizer_efSearch=8",
-              "nprobe=4,quantizer_efSearch=4",
-              "nprobe=2,quantizer_efSearch=16"]
+            [{"Ls":50}, {"Ls":100}]
 bigann-10M:
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF65536_HNSW32,PQ128x4fsr"              
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-                "nprobe=2,quantizer_efSearch=4",
-                "nprobe=4,quantizer_efSearch=4",
-                "nprobe=4,quantizer_efSearch=8",
-                "nprobe=8,quantizer_efSearch=4",
-                "nprobe=8,quantizer_efSearch=8",
-                "nprobe=8,quantizer_efSearch=16",
-                "nprobe=8,quantizer_efSearch=32",
-                "nprobe=16,quantizer_efSearch=16",
-                "nprobe=16,quantizer_efSearch=32",
-                "nprobe=16,quantizer_efSearch=64",
-                "nprobe=32,quantizer_efSearch=8",
-                "nprobe=32,quantizer_efSearch=32",
-                "nprobe=32,quantizer_efSearch=64",
-                "nprobe=32,quantizer_efSearch=128",
-                "nprobe=64,quantizer_efSearch=16",
-                "nprobe=64,quantizer_efSearch=32",
-                "nprobe=64,quantizer_efSearch=64",
-                "nprobe=64,quantizer_efSearch=128",
-                "nprobe=64,quantizer_efSearch=256",
-                "nprobe=128,quantizer_efSearch=32",
-                "nprobe=128,quantizer_efSearch=64",
-                "nprobe=128,quantizer_efSearch=128",
-                "nprobe=128,quantizer_efSearch=256",
-                "nprobe=128,quantizer_efSearch=512",
-                "nprobe=256,quantizer_efSearch=64",
-                "nprobe=256,quantizer_efSearch=128",
-                "nprobe=256,quantizer_efSearch=512"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -221,43 +166,6 @@ bigann-10M:
             {"Ls":750},
             {"Ls":1000}]
 bigann-100M:
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF65536_HNSW32,PQ128x4fsr",
-                "query_bs": 4096
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-              "nprobe=1,quantizer_efSearch=8",
-              "nprobe=1,quantizer_efSearch=16",
-              "nprobe=2,quantizer_efSearch=8",
-              "nprobe=2,quantizer_efSearch=16",
-              "nprobe=4,quantizer_efSearch=16",
-              "nprobe=4,quantizer_efSearch=32",
-              "nprobe=4,quantizer_efSearch=64",
-              "nprobe=8,quantizer_efSearch=32",
-              "nprobe=8,quantizer_efSearch=64",
-              "nprobe=16,quantizer_efSearch=32",
-              "nprobe=8,quantizer_efSearch=128",
-              "nprobe=16,quantizer_efSearch=64",
-              "nprobe=16,quantizer_efSearch=128",
-              "nprobe=32,quantizer_efSearch=64",
-              "nprobe=32,quantizer_efSearch=128",
-              "nprobe=32,quantizer_efSearch=256",
-              "nprobe=64,quantizer_efSearch=128",
-              "nprobe=64,quantizer_efSearch=256",
-              "nprobe=64,quantizer_efSearch=512",
-              "nprobe=128,quantizer_efSearch=128",
-              "nprobe=128,quantizer_efSearch=256",
-              "nprobe=128,quantizer_efSearch=512",
-              "nprobe=256,quantizer_efSearch=256",
-              "nprobe=256,quantizer_efSearch=512"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -609,45 +517,6 @@ msspacev-1M:
             {"Ls":500},
             {"Ls":1000}]
 msspacev-10M:
-  faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF1048576_HNSW32,PQ64x4fsr"              
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-                "nprobe=2,quantizer_efSearch=4",
-                "nprobe=4,quantizer_efSearch=4",
-                "nprobe=4,quantizer_efSearch=8",
-                "nprobe=8,quantizer_efSearch=4",
-                "nprobe=8,quantizer_efSearch=8",
-                "nprobe=8,quantizer_efSearch=16",
-                "nprobe=8,quantizer_efSearch=32",
-                "nprobe=16,quantizer_efSearch=16",
-                "nprobe=16,quantizer_efSearch=32",
-                "nprobe=16,quantizer_efSearch=64",
-                "nprobe=32,quantizer_efSearch=8",
-                "nprobe=32,quantizer_efSearch=32",
-                "nprobe=32,quantizer_efSearch=64",
-                "nprobe=32,quantizer_efSearch=128",
-                "nprobe=64,quantizer_efSearch=16",
-                "nprobe=64,quantizer_efSearch=32",
-                "nprobe=64,quantizer_efSearch=64",
-                "nprobe=64,quantizer_efSearch=128",
-                "nprobe=64,quantizer_efSearch=256",
-                "nprobe=128,quantizer_efSearch=32",
-                "nprobe=128,quantizer_efSearch=64",
-                "nprobe=128,quantizer_efSearch=128",
-                "nprobe=128,quantizer_efSearch=256",
-                "nprobe=128,quantizer_efSearch=512",
-                "nprobe=256,quantizer_efSearch=64",
-                "nprobe=256,quantizer_efSearch=128",
-                "nprobe=256,quantizer_efSearch=512"]
   ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -781,43 +650,6 @@ msspacev-10M:
             {"Ls":750},
             {"Ls":1000}]
 msspacev-100M:
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF1048576_HNSW32,PQ64x4fsr",
-                "query_bs": 4096
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-              "nprobe=1,quantizer_efSearch=8",
-              "nprobe=1,quantizer_efSearch=16",
-              "nprobe=2,quantizer_efSearch=8",
-              "nprobe=2,quantizer_efSearch=16",
-              "nprobe=4,quantizer_efSearch=16",
-              "nprobe=4,quantizer_efSearch=32",
-              "nprobe=4,quantizer_efSearch=64",
-              "nprobe=8,quantizer_efSearch=32",
-              "nprobe=8,quantizer_efSearch=64",
-              "nprobe=16,quantizer_efSearch=32",
-              "nprobe=8,quantizer_efSearch=128",
-              "nprobe=16,quantizer_efSearch=64",
-              "nprobe=16,quantizer_efSearch=128",
-              "nprobe=32,quantizer_efSearch=64",
-              "nprobe=32,quantizer_efSearch=128",
-              "nprobe=32,quantizer_efSearch=256",
-              "nprobe=64,quantizer_efSearch=128",
-              "nprobe=64,quantizer_efSearch=256",
-              "nprobe=64,quantizer_efSearch=512",
-              "nprobe=128,quantizer_efSearch=128",
-              "nprobe=128,quantizer_efSearch=256",
-              "nprobe=128,quantizer_efSearch=512",
-              "nprobe=256,quantizer_efSearch=256",
-              "nprobe=256,quantizer_efSearch=512"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -951,44 +783,6 @@ msspacev-100M:
             {"Ls":750},
             {"Ls":1000}]
 msspacev-1B:
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF1048576_HNSW32,PQ64x4fsr",
-                "url": "https://dl.fbaipublicfiles.com/billion-scale-ann-benchmarks/track1_baseline_faiss/msspacev-1B.IVF1M_2level_PQ64x4fsr.faissindex",
-                "query_bs": 4096
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-              "nprobe=1,quantizer_efSearch=8",
-              "nprobe=1,quantizer_efSearch=16",
-              "nprobe=2,quantizer_efSearch=8",
-              "nprobe=2,quantizer_efSearch=16",
-              "nprobe=4,quantizer_efSearch=16",
-              "nprobe=4,quantizer_efSearch=32",
-              "nprobe=4,quantizer_efSearch=64",
-              "nprobe=8,quantizer_efSearch=32",
-              "nprobe=8,quantizer_efSearch=64",
-              "nprobe=16,quantizer_efSearch=32",
-              "nprobe=8,quantizer_efSearch=128",
-              "nprobe=16,quantizer_efSearch=64",
-              "nprobe=16,quantizer_efSearch=128",
-              "nprobe=32,quantizer_efSearch=64",
-              "nprobe=32,quantizer_efSearch=128",
-              "nprobe=32,quantizer_efSearch=256",
-              "nprobe=64,quantizer_efSearch=128",
-              "nprobe=64,quantizer_efSearch=256",
-              "nprobe=64,quantizer_efSearch=512",
-              "nprobe=128,quantizer_efSearch=128",
-              "nprobe=128,quantizer_efSearch=256",
-              "nprobe=128,quantizer_efSearch=512",
-              "nprobe=256,quantizer_efSearch=256",
-              "nprobe=256,quantizer_efSearch=512"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -1123,38 +917,6 @@ msspacev-1B:
             {"Ls":1000}]
 
 text2image-10M:
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF65536_HNSW32,PQ128x4fsr",
-                }]
-          # Trying all combinations of nprobe x efSearch
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4,ht=106",
-              "nprobe=1,quantizer_efSearch=16,ht=114",
-              "nprobe=1,quantizer_efSearch=16,ht=116",
-              "nprobe=2,quantizer_efSearch=16,ht=110",
-              "nprobe=4,quantizer_efSearch=8,ht=118",
-              "nprobe=4,quantizer_efSearch=32,ht=256",
-              "nprobe=8,quantizer_efSearch=16,ht=114",
-              "nprobe=4,quantizer_efSearch=64,ht=118",
-              "nprobe=4,quantizer_efSearch=64,ht=122",
-              "nprobe=8,quantizer_efSearch=32,ht=116",
-              "nprobe=8,quantizer_efSearch=64,ht=116",
-              "nprobe=8,quantizer_efSearch=64,ht=126",
-              "nprobe=16,quantizer_efSearch=64,ht=256",
-              "nprobe=16,quantizer_efSearch=256,ht=118",
-              "nprobe=16,quantizer_efSearch=512,ht=256",
-              "nprobe=32,quantizer_efSearch=512,ht=128",
-              "nprobe=64,quantizer_efSearch=128,ht=126",
-              "nprobe=128,quantizer_efSearch=512,ht=256",
-              "nprobe=256,quantizer_efSearch=512,ht=120",
-              "nprobe=256,quantizer_efSearch=512,ht=122"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -1299,38 +1061,6 @@ text2image-10M:
           query-args: |
               [{"Ls":50, "BW":4, "T":16}]
 text2image-100M:
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF65536_HNSW32,PQ128x4fsr",
-                }]
-          # Trying all combinations of nprobe x efSearch
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4,ht=106",
-              "nprobe=1,quantizer_efSearch=16,ht=114",
-              "nprobe=1,quantizer_efSearch=16,ht=116",
-              "nprobe=2,quantizer_efSearch=16,ht=110",
-              "nprobe=4,quantizer_efSearch=8,ht=118",
-              "nprobe=4,quantizer_efSearch=32,ht=256",
-              "nprobe=8,quantizer_efSearch=16,ht=114",
-              "nprobe=4,quantizer_efSearch=64,ht=118",
-              "nprobe=4,quantizer_efSearch=64,ht=122",
-              "nprobe=8,quantizer_efSearch=32,ht=116",
-              "nprobe=8,quantizer_efSearch=64,ht=116",
-              "nprobe=8,quantizer_efSearch=64,ht=126",
-              "nprobe=16,quantizer_efSearch=64,ht=256",
-              "nprobe=16,quantizer_efSearch=256,ht=118",
-              "nprobe=16,quantizer_efSearch=512,ht=256",
-              "nprobe=32,quantizer_efSearch=512,ht=128",
-              "nprobe=64,quantizer_efSearch=128,ht=126",
-              "nprobe=128,quantizer_efSearch=512,ht=256",
-              "nprobe=256,quantizer_efSearch=512,ht=120",
-              "nprobe=256,quantizer_efSearch=512,ht=122"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.vamana
@@ -1596,37 +1326,5 @@ text2image-1B:
             {"Ls":500},
             {"Ls":750},
             {"Ls":1000}]
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ64_128,IVF1048576_HNSW32,PQ128x4fsr",
-                }]
-          # Trying all combinations of nprobe x efSearch
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4,ht=106",
-              "nprobe=1,quantizer_efSearch=16,ht=114",
-              "nprobe=1,quantizer_efSearch=16,ht=116",
-              "nprobe=2,quantizer_efSearch=16,ht=110",
-              "nprobe=4,quantizer_efSearch=8,ht=118",
-              "nprobe=4,quantizer_efSearch=32,ht=256",
-              "nprobe=8,quantizer_efSearch=16,ht=114",
-              "nprobe=4,quantizer_efSearch=64,ht=118",
-              "nprobe=4,quantizer_efSearch=64,ht=122",
-              "nprobe=8,quantizer_efSearch=32,ht=116",
-              "nprobe=8,quantizer_efSearch=64,ht=116",
-              "nprobe=8,quantizer_efSearch=64,ht=126",
-              "nprobe=16,quantizer_efSearch=64,ht=256",
-              "nprobe=16,quantizer_efSearch=256,ht=118",
-              "nprobe=16,quantizer_efSearch=512,ht=256",
-              "nprobe=32,quantizer_efSearch=512,ht=128",
-              "nprobe=64,quantizer_efSearch=128,ht=126",
-              "nprobe=128,quantizer_efSearch=512,ht=256",
-              "nprobe=256,quantizer_efSearch=512,ht=120",
-              "nprobe=256,quantizer_efSearch=512,ht=122"]
 
 

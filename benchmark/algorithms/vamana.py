@@ -24,9 +24,15 @@ class vamana(BaseOODANN):
         self.L = int(index_params.get("L"))
         self.alpha = float(index_params.get("alpha", 1.0))
         self.two_pass = float(index_params.get("two_pass", False))
+        default_threads = os.cpu_count()
+        threads = int(index_params.get("T", default_threads))
+        self.threads = threads
+        os.environ['PARLAY_NUM_THREADS'] = str(min(threads, os.cpu_count()))
+        print("Threads: ", threads)
+        print(os.environ.get('PARLAY_NUM_THREADS'))
 
     def index_name(self):
-        return f"R{self.R}_L{self.L}_alpha{self.alpha}"
+        return f"R{self.R}_L{self.L}_alpha{self.alpha}_threads{self.threads}"
     
     def create_index_dir(self, dataset):
         index_dir = os.path.join(os.getcwd(), "data", "indices")

@@ -22,9 +22,15 @@ class pynndescent(BaseOODANN):
         self.cluster_size = int(index_params.get("cluster_size", 100))
         self.alpha = float(index_params.get("alpha", 1.2))
         self.delta = float(index_params.get("delta", .05))
+        default_threads = os.cpu_count()
+        threads = int(index_params.get("T", default_threads))
+        self.threads = threads
+        os.environ['PARLAY_NUM_THREADS'] = str(min(threads, os.cpu_count()))
+        print("Threads: ", threads)
+        print(os.environ.get('PARLAY_NUM_THREADS'))
 
     def index_name(self):
-        return f"mxd{self.max_deg}_nc{self.num_clusters}_cs{self.cluster_size}_alpha{self.alpha}_delta{self.delta}"
+        return f"mxd{self.max_deg}_nc{self.num_clusters}_cs{self.cluster_size}_alpha{self.alpha}_delta{self.delta}_threads{self.threads}"
     
     def create_index_dir(self, dataset):
         index_dir = os.path.join(os.getcwd(), "data", "indices")

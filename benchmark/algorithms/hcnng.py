@@ -20,9 +20,15 @@ class hcnng(BaseOODANN):
         self.mst_deg = int(index_params.get("mst_deg", 3))
         self.num_clusters = int(index_params.get("num_clusters"))
         self.cluster_size = int(index_params.get("cluster_size", 1000))
+        default_threads = os.cpu_count()
+        threads = int(index_params.get("T", default_threads))
+        self.threads = threads
+        os.environ['PARLAY_NUM_THREADS'] = str(min(threads, os.cpu_count()))
+        print("Threads: ", threads)
+        print(os.environ.get('PARLAY_NUM_THREADS'))
 
     def index_name(self):
-        return f"mst{self.mst_deg}_nc{self.num_clusters}_cs{self.cluster_size}"
+        return f"mst{self.mst_deg}_nc{self.num_clusters}_cs{self.cluster_size}_threads{self.threads}"
     
     def create_index_dir(self, dataset):
         index_dir = os.path.join(os.getcwd(), "data", "indices")

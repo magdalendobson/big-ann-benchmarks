@@ -57,6 +57,7 @@ def store_results(dataset, count, definition, query_arguments,
     if not os.path.isdir(head):
         os.makedirs(head)
     f = h5py.File(name=fn, mode='w', libver='latest')
+    print(attrs.items())
     for k, v in attrs.items():
         f.attrs[k] = v
 
