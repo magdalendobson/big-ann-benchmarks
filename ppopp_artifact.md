@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-We use the Big ANN Benchmarks repository to generate our plots. We have provided a branch of this repository using Zenodo; you can use it to install a branch of the ParlayANN library that was also uploaded using Zenodo, as well as the competitor algorithms. 
+We use the Big ANN Benchmarks repository to generate our plots. We have provided a branch of this repository using Zenodo; you can use it to install a branch of our library that was also uploaded using Zenodo.
 
 ### Install
 
@@ -16,12 +16,11 @@ You should also to follow the post-install steps for running docker in non-root 
 
 ```bash
 python3.10 install.py --algorithm parlayann-artifact
-python3.10 install.py --algorithm faissconda
 ```
 
 ### Datasets
 
-The evaluation assumes that datasets are stored in the `data/` directory inside the main folder. You may want to use a symbolic link to a directory on an SSD depending on your memory constraints (this is discussed further in the Evaluation section). Download a small toy dataset using:
+The evaluation assumes that datasets are stored in the `data/` directory inside the main folder. You may want to use a symbolic link to a directory on an SSD depending on your memory constraints (this is discussed further in the Evaluation section, note that the resulting saved graphs will also be written to this folder). Download a small toy dataset using:
 
 ```bash
 python3.10 create_dataset.py --dataset random-xs
@@ -57,6 +56,8 @@ We present experimental results in Figures 1, 3, and 4 in our paper. Figure 1 sh
 Our paper presents results specifically on billion-size datasets. It took around 120 hours on a [TODO fill in machine] with 192 vCPUs to build all of the graphs, and requires around 1.5 terabytes of main memory. It additionally requires about 2 TB to store all the datasets, and then an additional 10 TB to store all the graph indices. We assume that the reviewer will not have the relevant time or resources for this evaluation. The evaluation for 100 million size took about 16 hours on a [TODO fill in machine] with 96 vCPUs to build each graph and requires about 150 GB of main memory as well as 1 TB storage. We assume that the reviewer may possibly be able to do the 100 million scale evaluation, but we also provide instructions to reproduce the results at the 10 million scale in case that is preferred (the memory requirements scale down by exactly a factor of 10 when going from 100 million to 10 million). 
 
 In the next section, we describe how to reproduce the thread scaling results in Figure 1. Then, we provide scripts for reproducing the results in Figure 3 at either the 10 million or 100 million scale.
+
+We suggest a minimum hardware requirement of a 16-32 core machine with at least 20 GB main memory and at least 100 GB free SSD storage space. If you have less storage space (say around 30 GB) it may still be possible to run the evaluation by deleting graph files as they are generated instead of storing them. We are happy to discuss how to do this if this is your scenario.
 
 ### Thread Scaling (Figure 1)
 
@@ -118,4 +119,94 @@ bash create_100M_plots.sh
 
 ## Extending Functionality
 
+Here we describe how to modify the search and build parameters of each algorithm and mention some other datasets that they can be run on if desired. The meanings of these parameters are discussed in detail in our paper, and we provide pointers to the relevant sections where applicable.
 
+The search options for each dataset are configured in `artifact_eval.yaml`; you can use this file to change parameters and add parameters for other datasets. We provide an explicit example at the end of the section.
+
+## Search Parameters
+
+The search parameters are divided by those for single-layer graphs and those for multi-layer graphs, and are described in Appendix B of our paper. The parameters for single layer graphs are as follows:
+
+1. **Ls** (`long`): the beam width for use during searching. Must be set at least $k$. Controls the number of candidate neighbors retained at any point in the search and is for the most part the chief determinant of accuracy and speed of the search. A higher beam produces a slower but more accurate search. Typically set from 10-1000.
+2. **visit** (`long`): controls the maximum number of graph vertices visited during the beam search. This is useful for low accuracy searches, because for most inputs, even the minimum beam value reaches recall around 80%. Constraining the number of vertices that can be visited provides a way to reach lower recall very quickly. Typically set between 3-20. 
+
+For multi-level graphs, the following parameters are used:
+
+TODO input parameters for HNSW:
+
+## Build Parameters
+
+The build parameters are described in detail in Appendix B of our paper. Here we provide an overview of parameter names and suggested ranges.
+
+The build parameters for ParDiskANN are as follows:
+
+1. **R** (`long`): the degree bound. Typically between 32 and 128.
+2. **L** (`long`): the beam width to use when building the graph. Should be set at least 30% higher than $$R$$, and up to 500.
+3. **alpha** (`double`): the pruning parameter. Should be set at 1.0 for similarity measures that are not metrics (e.g. maximum inner product), and between 1.0 and 1.4 for metric spaces. 
+4. **two_pass** (`bool`): optional argument that allows the user to build the graph with two passes or just one (two passes approximately doubles the build time, but provides higher accuracy).
+
+The build parameters for ParHCNNG are as follows:
+
+1. **mst_deg** (`long`): the degree bound of the graph built by each individual cluster tree. Almost always set to 3.
+2. **num_clusters** (`long`): the number of cluster trees. Set between 20 and 50.
+3. **cluster_size** (`long`): the leaf size of each cluster tree. Almost always set to 1000.
+
+The build parameters for ParPyNNDescent are as follows:
+
+1. **R** (`long`): the graph degree bound. Typically set from 40-60.
+2. **num_clusters** (`long`): the number of cluster trees to use when initializing the graph. Typically around 10.
+3. **cluster_size** (`long`): the leaf size of the cluster trees. Typically 100-1000.
+4. **alpha** (`double`): the pruning parameter for the final pruning step. Typically 1.2 for metric spaces, and 1.0 for non-metric spaces.
+5. **delta** (`double`): the early stopping parameter for the nnDescent process. Almost always set to .05.
+
+The build parameters for ParHNSW are as follows:
+
+TODO fill in for HNSW
+
+## Other Datasets
+
+Two other datasets are available to download through this repository; other datasets can be added by implementing the required class in `benchmarks/datasets.py`. The two datasets, Yandex DEEP and Microsoft Turing-ANNS, are described [here](https://big-ann-benchmarks.com/neurips21.html). They are available in 10M, 100M, and 1B slices and, like the other datasets, come with precomputed ground truth. 
+
+## Example
+
+The entry in the .yaml file for MSSPACEV-1M for ParDiskANN is as follows:
+
+```yaml
+msspacev-1M:
+    ParDiskANN:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.vamana
+      constructor: vamana
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"R":64, "L":128, "alpha":1.2, "two_pass":0}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":30},
+            {"Ls":40},
+            {"Ls":50},
+            {"Ls":60},
+            {"Ls":75},
+            {"Ls":100},
+            {"Ls":150},
+            {"Ls":200},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":1000}]
+```
+
+The number of threads is automatically set to the maximum number in your OS, but you can change it by modifying the build arguments by adding the parameter `T`: use `[{"R":64, "L":128, "alpha":1.2, "two_pass":0, "T":8}]` to run on 8 threads, for example. The rest of the parameters are as described in the previous section; the `args` section refers to the build arguments, and the `query-args` section refers to the query arguments. For other datasets you can add an additional entry to the .yaml file. 
+
+You can plot any new variants using the plotting commands in this README, or by looking at the plotting commands in `create_10M_plots.sh`. You can also export statistics such as recall and distance computations to a CSV instead of plotting by using the command:
+
+```bash
+python3.10 data_export.py --out res.csv
+```
