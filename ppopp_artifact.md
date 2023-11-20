@@ -28,7 +28,7 @@ python3.10 create_dataset.py --dataset random-xs
 
 ### Toy Evaluation
 
-Finally, run the algorithms on the toy dataset to confirm that they run as expected:
+Finally, run the algorithms on the toy dataset to confirm that they run as expected. The `run.py` file builds a nearest neighbor graph (as described in Section 3 of our paper) and queries it, recording the results for later analysis. 
 
 ```bash
 python3.10 run.py --algorithm ParDiskANN --dataset random-xs --definitions artifact_eval.yaml
@@ -53,7 +53,7 @@ TODO add plot
 
 We present experimental results in Figures 1, 3, and 4 in our paper. Figure 1 shows a curve of in build times as the number of threads varies from 1 to 96. Figure 3 shows QPS/recall plots for our algorithms for billion size datasets. Figure 4 is a size scaling study that tracks various metrics as the size of the dataset increases. We consider the main results of our paper to be the speedup figures in Figure 1 and the QPS/recall plots in Figure 3. In particular, we do not consider the size scaling study in Figure 4 to be a main result, and we anticipate that the reviewer may not want to experiment with datasets larger than 10 million vectors, so we do not include instructions to reproduce this figure. 
 
-Our paper presents results specifically on billion-size datasets. It took around 120 hours on a [TODO fill in machine] with 192 vCPUs to build all of the graphs, and requires around 1.5 terabytes of main memory. It additionally requires about 2 TB to store all the datasets, and then an additional 10 TB to store all the graph indices. We assume that the reviewer will not have the relevant time or resources for this evaluation. The evaluation for 100 million size took about 16 hours on a [TODO fill in machine] with 96 vCPUs to build each graph and requires about 150 GB of main memory as well as 1 TB storage. We assume that the reviewer may possibly be able to do the 100 million scale evaluation, but we also provide instructions to reproduce the results at the 10 million scale in case that is preferred (the memory requirements scale down by exactly a factor of 10 when going from 100 million to 10 million). 
+Our paper presents results specifically on billion-size datasets. It took around 120 hours on an Azure Msv2 with 192 vCPUs to build all of the graphs, and requires around 1.5 terabytes of main memory. It additionally requires about 2 TB to store all the datasets, and then an additional 10 TB to store all the graph indices. We assume that the reviewer will not have the relevant time or resources for this evaluation. The evaluation for 100 million size took about 16 hours on an Azure ev5 with 96 vCPUs to build each graph and requires about 150 GB of main memory as well as 1 TB storage. We assume that the reviewer may possibly be able to do the 100 million scale evaluation, but we also provide instructions to reproduce the results at the 10 million scale in case that is preferred (the memory requirements scale down by exactly a factor of 10 when going from 100 million to 10 million). 
 
 In the next section, we describe how to reproduce the thread scaling results in Figure 1. Then, we provide scripts for reproducing the results in Figure 3 at either the 10 million or 100 million scale.
 
