@@ -45,9 +45,9 @@ sudo chmod -R 777 results/
 python3.10 plot.py --dataset random-xs
 ```
 
-The plot should look similar to the following image (numbers generated on a machine with 72 cores, so your performance may vary):
+The plot can be found in `results/random-xs.png` and should look similar to the following image (numbers generated on a machine with 72 cores, so your performance may vary):
 
-TODO add plot
+[Alt text](image.png)
 
 ## Proposed Evaluation
 
@@ -57,7 +57,7 @@ Our paper presents results specifically on billion-size datasets. It took around
 
 In the next section, we describe how to reproduce the thread scaling results in Figure 1. Then, we provide scripts for reproducing the results in Figure 3 at either the 10 million or 100 million scale.
 
-We suggest a minimum hardware requirement of a 16-32 core machine with at least 20 GB main memory and at least 100 GB free SSD storage space. If you have less storage space (say around 30 GB) it may still be possible to run the evaluation by deleting graph files as they are generated instead of storing them. We are happy to discuss how to do this if this is your scenario.
+We suggest a minimum hardware requirement of a 16-32 core machine with at least 20 GB main memory and at least 100 GB free SSD storage space. We also require the evaluator to have sudo access to the machine. If you have less storage space (say around 30 GB) it may still be possible to run the evaluation by deleting graph files as they are generated instead of storing them. We are happy to discuss how to do this if this is your scenario.
 
 ### Thread Scaling (Figure 1)
 
@@ -79,7 +79,7 @@ After the run concludes, use the following commands to generate the plot:
 
 ```bash
 sudo chmod -R 777 results/
-python3.10 plot.py --dataset msspacev-1M -x threads -y build --out results/threadscale_msspacev1M
+python3.10 plot.py --dataset msspacev-1M -x threads -y build --out results/threadscale_msspacev1M -Y log
 ```
 
 You should find the plot in the `results` folder. It should be titled `threadscale_msspacev1M.png`
@@ -88,8 +88,13 @@ You should find the plot in the `results` folder. It should be titled `threadsca
 
 First, download the datasets: 
 ```bash
-python3.10 create_dataset.py --dataset [bigann-10M | msspacev-10M | text2image-10M]
+python3.10 create_dataset.py --dataset bigann-10M 
+python3.10 create_dataset.py --dataset msspacev-10M 
+python3.10 create_dataset.py --dataset text2image-10M
 ```
+
+TODO fix problem with bigann dataset
+
 The download of a file occasionally fails due to connectivity and needs to be repeated. Running the download multiple times will not download duplicates of the datasets, so just rerun the same command if you get any error messages.
 
 Next, run each algorithm using the following script:

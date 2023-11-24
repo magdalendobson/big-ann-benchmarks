@@ -7,9 +7,9 @@ random-xs:
       run-groups:
         base:
           args: |
-              [{"R":32, "L":64, "alpha":1.2, "two_pass":0}]
+              [{"R":16, "L":32, "alpha":1.2, "two_pass":0}]
           query-args: |
-            [{"Ls":50}, {"Ls":100}]
+            [{"Ls":10}, {"Ls":50}]
     ParHCNNG:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.hcnng
@@ -18,9 +18,9 @@ random-xs:
       run-groups:
         base:
           args: |
-              [{"mst_deg":3, "num_clusters":15, "cluster_size":1000}]
+              [{"mst_deg":3, "num_clusters":10, "cluster_size":1000}]
           query-args: |
-            [{"Ls":50}, {"Ls":100}]
+            [{"Ls":10}, {"Ls":50}]
     ParPyNNDescent:
       docker-tag: billion-scale-benchmark-parlayann-artifact
       module: benchmark.algorithms.pynndescent
@@ -29,9 +29,9 @@ random-xs:
       run-groups:
         base:
           args: |
-              [{"max_deg":30, "num_clusters":10, "cluster_size":100, "alpha":1.0, "delta":0.05}]
+              [{"max_deg":20, "num_clusters":10, "cluster_size":100, "alpha":1.0, "delta":0.05}]
           query-args: |
-            [{"Ls":50}, {"Ls":100}]
+            [{"Ls":10}, {"Ls":50}]
 bigann-10M:
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
