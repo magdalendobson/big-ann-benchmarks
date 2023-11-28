@@ -20,7 +20,7 @@ python3.10 install.py --algorithm parlayann-artifact
 
 ### Datasets
 
-The evaluation assumes that datasets are stored in the `data/` directory inside the main folder. You may want to use a symbolic link to a directory on an SSD depending on your memory constraints (this is discussed further in the Evaluation section, note that the resulting saved graphs will also be written to this folder). Download a small toy dataset using:
+The evaluation assumes that datasets are stored in the `data/` directory inside the main folder. You should use a symbolic link to a directory on an SSD depending on your memory constraints (this is discussed further in the Evaluation section, note that the resulting saved graphs will also be written to this folder). Download a small toy dataset using:
 
 ```bash
 python3.10 create_dataset.py --dataset random-xs
@@ -45,9 +45,7 @@ sudo chmod -R 777 results/
 python3.10 plot.py --dataset random-xs
 ```
 
-The plot can be found in `results/random-xs.png` and should look similar to the following image (numbers generated on a machine with 72 cores, so your performance may vary):
-
-[Alt text](image.png)
+The plot can be found in `results/random-xs.png`.
 
 ## Proposed Evaluation
 
