@@ -32,6 +32,17 @@ random-xs:
               [{"max_deg":30, "num_clusters":10, "cluster_size":100, "alpha":1.0, "delta":0.05}]
           query-args: |
             [{"Ls":50}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":16, "efc":64, "ml":0.28, "alpha":1.2}]
+          query-args: |
+            [{"Ls":50}]
     faiss-t1:
       docker-tag: billion-scale-benchmark-faissconda
       module: benchmark.algorithms.faiss_t1
@@ -185,6 +196,50 @@ bigann-10M:
         base:
           args: |
               [{"max_deg":40, "num_clusters":10, "cluster_size":100, "alpha":1.2, "delta":0.05}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.82}]
           query-args: |
             [{"Ls":10, "visit":3},
             {"Ls":10, "visit":5},
@@ -390,6 +445,50 @@ bigann-100M:
             {"Ls":500},
             {"Ls":750},
             {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.82}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
 bigann-1B:
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
@@ -523,6 +622,50 @@ bigann-1B:
             {"Ls":500},
             {"Ls":750},
             {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.82}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
 msspacev-1M:
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
@@ -589,6 +732,34 @@ msspacev-1M:
         base:
           args: |
               [{"max_deg":60, "num_clusters":10, "cluster_size":1000, "alpha":1.2, "delta":0.05}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":30},
+            {"Ls":40},
+            {"Ls":50},
+            {"Ls":60},
+            {"Ls":75},
+            {"Ls":100},
+            {"Ls":150},
+            {"Ls":200},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.83}]
           query-args: |
             [{"Ls":10, "visit":3},
             {"Ls":10, "visit":5},
@@ -780,6 +951,50 @@ msspacev-10M:
             {"Ls":500},
             {"Ls":750},
             {"Ls":1000}]
+  ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.83}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
 msspacev-100M:
     faiss-t1:
       docker-tag: billion-scale-benchmark-faissconda
@@ -915,6 +1130,50 @@ msspacev-100M:
         base:
           args: |
               [{"max_deg":60, "num_clusters":10, "cluster_size":100, "alpha":1.2, "delta":0.05}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.83}]
           query-args: |
             [{"Ls":10, "visit":3},
             {"Ls":10, "visit":5},
@@ -1121,7 +1380,50 @@ msspacev-1B:
             {"Ls":500},
             {"Ls":750},
             {"Ls":1000}]
-
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.83}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
 text2image-10M:
     faiss-t1:
       docker-tag: billion-scale-benchmark-faissconda
@@ -1252,6 +1554,50 @@ text2image-10M:
         base:
           args: |
               [{"max_deg":60, "num_clusters":10, "cluster_size":100, "alpha":1.0, "delta":0.05}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":1.1}]
           query-args: |
             [{"Ls":10, "visit":3},
             {"Ls":10, "visit":5},
@@ -1463,6 +1809,50 @@ text2image-100M:
             {"Ls":500},
             {"Ls":750},
             {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":1.1}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
 text2image-1B:
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
@@ -1561,6 +1951,50 @@ text2image-1B:
         base:
           args: |
               [{"max_deg":60, "num_clusters":10, "cluster_size":100, "alpha":1.0, "delta":0.05}]
+          query-args: |
+            [{"Ls":10, "visit":3},
+            {"Ls":10, "visit":5},
+            {"Ls":10, "visit":8},
+            {"Ls":10, "visit":12},
+            {"Ls":10, "visit":15},
+            {"Ls":10, "visit":20},
+            {"Ls":15},
+            {"Ls":20},
+            {"Ls":25},
+            {"Ls":30},
+            {"Ls":35},
+            {"Ls":40},
+            {"Ls":45},
+            {"Ls":50},
+            {"Ls":55},
+            {"Ls":60},
+            {"Ls":70},
+            {"Ls":80},
+            {"Ls":90},
+            {"Ls":100},
+            {"Ls":120},
+            {"Ls":140},
+            {"Ls":160},
+            {"Ls":180},
+            {"Ls":200},
+            {"Ls":225},
+            {"Ls":250},
+            {"Ls":275},
+            {"Ls":300},
+            {"Ls":375},
+            {"Ls":400},
+            {"Ls":500},
+            {"Ls":750},
+            {"Ls":1000}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":1.1}]
           query-args: |
             [{"Ls":10, "visit":3},
             {"Ls":10, "visit":5},
