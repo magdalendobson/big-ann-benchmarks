@@ -23,7 +23,7 @@ class vamana(BaseOODANN):
         self.R = int(index_params.get("R"))
         self.L = int(index_params.get("L"))
         self.alpha = float(index_params.get("alpha", 1.0))
-        self.two_pass = float(index_params.get("two_pass", False))
+        self.two_pass = bool(index_params.get("two_pass", False))
         default_threads = os.cpu_count()
         threads = int(index_params.get("T", default_threads))
         self.threads = threads
