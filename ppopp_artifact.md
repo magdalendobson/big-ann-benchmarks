@@ -1,15 +1,15 @@
-# ParANN: Scalable and Deterministic Parallel Graph-Based Algorithms for Approximate Nearest Neighbor Search
+ ParANN: Scalable and Deterministic Parallel Graph-Based Algorithms for Approximate Nearest Neighbor Search
 
 ## Getting Started
 
-We use the Big ANN Benchmarks repository to generate our plots. We have provided a branch of this repository using Zenodo; you can use it to install a branch of our library that was also uploaded using Zenodo.
+We use the [Big ANN Benchmarks](https://github.com/harsha-simhadri/big-ann-benchmarks/tree/main) repository to generate our plots. We have uploaded a fork of this repository to Zenodo; you can use it to install a branch of our library that was also uploaded using Zenodo.
 
 ### Install
 
-The only prerequisite is Python3.10 and Docker. All commands are assumed to be run in the top-level directory unless otherwise stated.
+The only prerequisite is Python3.10 and Docker. All commands are assumed to be run in the top-level directory unless otherwise stated. You may wish to use a conda environment for python commands.
 
 1. Download and unzip the repo: 
-2. Run `pip install -r requirements_py3.10.txt` (Use `requirements_py38.txt` if you have Python 3.8.)
+2. Run `pip install -r requirements_py3.10.txt` 
 3. Install docker by following instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 You should also to follow the post-install steps for running docker in non-root user mode.
 4. Install the necessary Docker images as follows:
@@ -51,7 +51,7 @@ The plot can be found in `results/random-xs.png` and should look similar to the 
 
 ## Proposed Evaluation
 
-We present experimental results in Figures 1, 3, and 4 in our paper. Figure 1 shows a curve of in build times as the number of threads varies from 1 to 96. Figure 3 shows QPS/recall plots for our algorithms for billion size datasets. Figure 4 is a size scaling study that tracks various metrics as the size of the dataset increases. We consider the main results of our paper to be the speedup figures in Figure 1 and the QPS/recall plots in Figure 3. In particular, we do not consider the size scaling study in Figure 4 to be a main result, and we anticipate that the reviewer may not want to experiment with datasets larger than 10 million vectors, so we do not include instructions to reproduce this figure. 
+We present experimental results in Figures 1, 3, and 4 in our paper. Figure 1 shows a curve of in build times as the number of threads varies from 1 to 96. Figure 3 shows QPS/recall plots for our algorithms for billion size datasets. Figure 4 is a size scaling study that tracks various metrics as the size of the dataset increases from 1 million to 1 billion. We assume that the reviewer will not have the resources to generate this graph as it requires multiple evaluations at both the 100 million and billion scale; the data points for the 10 million scale are observable from the plots corresponding to Figure 3. 
 
 Our paper presents results specifically on billion-size datasets. It took around 120 hours on an Azure Msv2 with 192 vCPUs to build all of the graphs, and requires around 1.5 terabytes of main memory. It additionally requires about 2 TB to store all the datasets, and then an additional 10 TB to store all the graph indices. We assume that the reviewer will not have the relevant time or resources for this evaluation. The evaluation for 100 million size took about 16 hours on an Azure ev5 with 96 vCPUs to build each graph and requires about 150 GB of main memory as well as 1 TB storage. We assume that the reviewer may possibly be able to do the 100 million scale evaluation, but we also provide instructions to reproduce the results at the 10 million scale in case that is preferred (the memory requirements scale down by exactly a factor of 10 when going from 100 million to 10 million). 
 
@@ -73,6 +73,7 @@ The next script builds the graph for each algorithm on [1,2,8,16,24,32,48,64,96]
 
 ```bash
 bash thread_scaling.sh
+
 ```
 
 After the run concludes, use the following commands to generate the plot:
@@ -92,8 +93,6 @@ python3.10 create_dataset.py --dataset bigann-10M
 python3.10 create_dataset.py --dataset msspacev-10M 
 python3.10 create_dataset.py --dataset text2image-10M
 ```
-
-TODO fix problem with bigann dataset
 
 The download of a file occasionally fails due to connectivity and needs to be repeated. Running the download multiple times will not download duplicates of the datasets, so just rerun the same command if you get any error messages.
 
@@ -116,10 +115,21 @@ Next, navigate to the `results/` folder. It should have generated three new QPS/
 The explanation for these instructions is exactly analogous to the instructions for 10M size datasets:
 
 ```bash
-python3.10 create_dataset.py --dataset [bigann-100M | msspacev-100M | text2image-100M]
+python3.10 create_dataset.py --dataset bigann-100M
+python3.10 create_dataset.py --dataset msspacev-100M
+python3.10 create_dataset.py --dataset text2image-100M
 bash run_100M_builds.sh
 sudo chmod -R 777 results/
 bash create_100M_plots.sh
+```
+
+You might also wish to run a single build algorithm on one dataset instead of all combinations. Here is an example of the command to do this for bigann-100M for ParDiskANN:
+
+```bash
+python3.10 create_dataset.py --dataset bigann-100M 
+python3.10 run.py --algorithm ParDiskANN --dataset bigann-100M --definitions artifact_eval.yaml --rebuild
+sudo chmod -R 777 results/
+python3.10 plot.py --dataset bigann-100M --y-scale log --out results/QPS_bigann_100M
 ```
 
 ## Extending Functionality
@@ -146,7 +156,7 @@ The build parameters are described in detail in Appendix B of our paper. Here we
 The build parameters for ParDiskANN are as follows:
 
 1. **R** (`long`): the degree bound. Typically between 32 and 128.
-2. **L** (`long`): the beam width to use when building the graph. Should be set at least 30% higher than $$R$$, and up to 500.
+2. **L** (`long`): the beam width to use when building the graph. Should be set at least 30% higher than $R$, and up to 500.
 3. **alpha** (`double`): the pruning parameter. Should be set at 1.0 for similarity measures that are not metrics (e.g. maximum inner product), and between 1.0 and 1.4 for metric spaces. 
 4. **two_pass** (`bool`): optional argument that allows the user to build the graph with two passes or just one (two passes approximately doubles the build time, but provides higher accuracy).
 
