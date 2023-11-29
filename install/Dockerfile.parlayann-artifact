@@ -1,4 +1,4 @@
-FROM neurips23
+FROM billion-scale-benchmark
 
 RUN apt update
 RUN apt install -y software-properties-common
