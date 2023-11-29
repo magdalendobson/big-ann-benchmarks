@@ -24,9 +24,15 @@ class hnsw(BaseOODANN):
         self.efc = int(index_params.get("efc"))
         self.alpha = float(index_params.get("alpha", 1.0))
         self.ml = float(index_params.get("ml", 0.36))
+        default_threads = os.cpu_count()
+        threads = int(index_params.get("T", default_threads))
+        self.threads = threads
+        os.environ['PARLAY_NUM_THREADS'] = str(min(threads, os.cpu_count()))
+        print("Threads: ", threads)
+        print(os.environ.get('PARLAY_NUM_THREADS'))
 
     def index_name(self):
-        return f"m{self.m}_efc{self.efc}_ml{self.ml}_alpha{self.alpha}"
+        return f"m{self.m}_efc{self.efc}_ml{self.ml}_alpha{self.alpha}_threads{self.threads}"
     
     def create_index_dir(self, dataset):
         index_dir = os.path.join(os.getcwd(), "data", "indices")

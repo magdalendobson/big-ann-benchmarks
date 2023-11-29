@@ -44,3 +44,14 @@ msspacev-1M:
               [{"max_deg":60, "num_clusters":10, "cluster_size":1000, "alpha":1.2, "delta":0.05, "T":8}]
           query-args: |
             [{"Ls":100}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.83, "T":8}]
+          query-args: |
+            [{"Ls":100}]
