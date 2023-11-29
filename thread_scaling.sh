@@ -41,13 +41,13 @@ python3.10 run.py --algorithm ParHNSW --dataset msspacev-1M --definitions thread
 # builds on 48 threads
 python3.10 run.py --algorithm ParDiskANN --dataset msspacev-1M --definitions thread_48.yaml --rebuild
 python3.10 run.py --algorithm ParHCNNG --dataset msspacev-1M --definitions thread_48.yaml --rebuild
-python3.10 run.py --algorithm ParPyNNDescent --dataset msspacev-1M --definitions thread_1.yaml --rebuild
+python3.10 run.py --algorithm ParPyNNDescent --dataset msspacev-1M --definitions thread_48.yaml --rebuild
 python3.10 run.py --algorithm ParHNSW --dataset msspacev-1M --definitions thread_48.yaml --rebuild
 
 # builds on 64 threads
-python3.10 run.py --algorithm ParDiskANN --dataset msspacev-1M --definitions thread_48.yaml --rebuild
-python3.10 run.py --algorithm ParHCNNG --dataset msspacev-1M --definitions thread_48.yaml --rebuild
-python3.10 run.py --algorithm ParPyNNDescent --dataset msspacev-1M --definitions thread_48.yaml --rebuild
+python3.10 run.py --algorithm ParDiskANN --dataset msspacev-1M --definitions thread_64.yaml --rebuild
+python3.10 run.py --algorithm ParHCNNG --dataset msspacev-1M --definitions thread_64.yaml --rebuild
+python3.10 run.py --algorithm ParPyNNDescent --dataset msspacev-1M --definitions thread_64.yaml --rebuild
 python3.10 run.py --algorithm ParHNSW --dataset msspacev-1M --definitions thread_64.yaml --rebuild
 
 # builds on 96 threads
