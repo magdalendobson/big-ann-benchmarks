@@ -34,9 +34,8 @@ Finally, run the algorithms on the toy dataset to confirm that they run as expec
 python3.10 run.py --algorithm ParDiskANN --dataset random-xs --definitions artifact_eval.yaml
 python3.10 run.py --algorithm ParHCNNG --dataset random-xs --definitions artifact_eval.yaml
 python3.10 run.py --algorithm ParPyNNDescent --dataset random-xs --definitions artifact_eval.yaml
+python3.10 run.py --algorithm ParHNSW --dataset random-xs --definitions artifact_eval.yaml
 ```
-
-TODO add HNSW
 
 Now, generate a plot of results:
 
@@ -143,10 +142,6 @@ The search parameters are divided by those for single-layer graphs and those for
 1. **Ls** (`long`): the beam width for use during searching. Must be set at least $k$. Controls the number of candidate neighbors retained at any point in the search and is for the most part the chief determinant of accuracy and speed of the search. A higher beam produces a slower but more accurate search. Typically set from 10-1000.
 2. **visit** (`long`): controls the maximum number of graph vertices visited during the beam search. This is useful for low accuracy searches, because for most inputs, even the minimum beam value reaches recall around 80%. Constraining the number of vertices that can be visited provides a way to reach lower recall very quickly. Typically set between 3-20. 
 
-For multi-level graphs, the following parameters are used:
-
-TODO input parameters for HNSW:
-
 ## Build Parameters
 
 The build parameters are described in detail in Appendix B of our paper. Here we provide an overview of parameter names and suggested ranges.
@@ -174,7 +169,10 @@ The build parameters for ParPyNNDescent are as follows:
 
 The build parameters for ParHNSW are as follows:
 
-TODO fill in for HNSW
+1. **m** (`long`): the degree bound. Typically between 16 and 64. The graph at the bottom layer (layer0) has the degree bound of $2m$ while graphs at upper layers have degree bound of $m$.
+2. **efc** (`long`): the beam width to use when building the graph. Should be set at least $2.5R$, and up to 500.
+3. **alpha** (`double`): the pruning parameter. Should be set between 1.0 and 1.15 for similarity measures that are not metrics (e.g. maximum inner product), and between 0.8 and 1.0 for metric spaces. 
+4. **ml** (`double`): optional argument to control the number of layers (height). Increasing $ml$ results in more layers which increases the build time but potentially improve the query performance; however, improper settings of $ml$ (too high or too low) can incur much work of query thus impacting the query performance. It should be set around $1/log~m$.
 
 ## Other Datasets
 
