@@ -7,8 +7,8 @@ RUN apt update
 RUN DEBIAN_FRONTEND=noninteractive apt install -y git make cmake g++ libaio-dev libgoogle-perftools-dev libunwind-dev clang-format libboost-dev libboost-program-options-dev libmkl-full-dev libcpprest-dev python3.10 
 RUN apt install unzip 
 
-ARG CACHEBUST=4
-RUN wget https://zenodo.org/records/10150309/files/magdalendobson/ParlayANN-ppopp24-ppopp-2024-artifact.zip && unzip ParlayANN-ppopp24-ppopp-2024-artifact.zip && cd magdalendobson-ParlayANN-ppopp24-1f5f8fd/python && pip install pybind11 && bash compile.sh 
+ARG CACHEBUST=7
+RUN wget https://zenodo.org/records/10223558/files/magdalendobson/ParlayANN-ppopp24-ppopp-artifact-final-2.zip && unzip ParlayANN-ppopp24-ppopp-artifact-final-2.zip && cd magdalendobson-ParlayANN-ppopp24-45587ba/python && pip install pybind11 && bash compile.sh 
 # WORKDIR /home/app/ParlayANN
 # RUN git submodule update --init --recursive
 # WORKDIR /home/app/ParlayANN/python
@@ -17,7 +17,7 @@ RUN wget https://zenodo.org/records/10150309/files/magdalendobson/ParlayANN-ppop
 
 # RUN bash compile.sh
 
-ENV PYTHONPATH=$PYTHONPATH:/home/app/magdalendobson-ParlayANN-ppopp24-1f5f8fd/python
+ENV PYTHONPATH=$PYTHONPATH:/home/app/magdalendobson-ParlayANN-ppopp24-45587ba/python
 # ENV PARLAY_NUM_THREADS=8
 
 WORKDIR /home/app

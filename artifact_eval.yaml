@@ -42,23 +42,7 @@ random-xs:
           args: |
               [{"m":16, "efc":64, "ml":0.28, "alpha":1.2}]
           query-args: |
-            [{"Ls":50}]
-    faiss-t1:
-      docker-tag: billion-scale-benchmark-faissconda
-      module: benchmark.algorithms.faiss_t1
-      constructor: Faiss
-      base-args: ["@metric"]
-      run-groups:
-        base:
-          args: |
-              [{"indexkey": "OPQ32_128,IVF1024_HNSW32,PQ32"
-                }]
-          query-args: |
-              ["nprobe=1,quantizer_efSearch=4",
-              "nprobe=2,quantizer_efSearch=4",
-              "nprobe=2,quantizer_efSearch=8",
-              "nprobe=4,quantizer_efSearch=4",
-              "nprobe=2,quantizer_efSearch=16"]
+            [{"Ls":10}, {"Ls":50}]
 bigann-10M:
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann-artifact
