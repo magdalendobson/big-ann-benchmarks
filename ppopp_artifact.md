@@ -1,8 +1,14 @@
- ParANN: Scalable and Deterministic Parallel Graph-Based Algorithms for Approximate Nearest Neighbor Search
+  ParANN: Scalable and Deterministic Parallel Graph-Based Algorithms for Approximate Nearest Neighbor Search
+
+## Code Availability 
+
+Our repository can be found at the following [Zenodo link](https://zenodo.org/records/10223558).
+
+The separate repository that we use to run the algorithms and generate plots (which you should install rather than the above) can be found at this [Zenodo link](https://zenodo.org/records/10223597). This repo is what you should download and install, and it contains a Docker container for installing our other library.
 
 ## Getting Started
 
-We use the [Big ANN Benchmarks](https://github.com/harsha-simhadri/big-ann-benchmarks/tree/main) repository to generate our plots. We have uploaded a fork of this repository to Zenodo; you can use it to install a branch of our library that was also uploaded using Zenodo.
+We use the [Big ANN Benchmarks](https://github.com/harsha-simhadri/big-ann-benchmarks/tree/main) repository to generate our plots. We have uploaded a fork of this repository to [Zenodo](https://zenodo.org/records/10223597) (same link as above); you can use it to install a branch of our library that was also uploaded using Zenodo.
 
 ### Install
 
