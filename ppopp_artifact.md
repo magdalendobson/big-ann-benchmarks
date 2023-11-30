@@ -24,6 +24,12 @@ You should also to follow the post-install steps for running docker in non-root 
 python3.10 install.py --algorithm parlayann-artifact
 ```
 
+5. Create the result folder
+
+```bash
+mkdir results
+```
+
 ### Datasets
 
 The evaluation assumes that datasets are stored in the `data/` directory inside the main folder. You should use a symbolic link to a directory on an SSD depending on your memory constraints (this is discussed further in the Evaluation section, note that the resulting saved graphs will also be written to this folder). Download a small toy dataset using:
@@ -46,7 +52,6 @@ python3.10 run.py --algorithm ParHNSW --dataset random-xs --definitions artifact
 Now, generate a plot of results:
 
 ```bash
-sudo chmod -R 777 results/
 python3.10 plot.py --dataset random-xs
 ```
 
@@ -82,7 +87,6 @@ bash thread_scaling.sh
 After the run concludes, use the following commands to generate the plot:
 
 ```bash
-sudo chmod -R 777 results/
 python3.10 plot.py --dataset msspacev-1M -x threads -y build --out results/threadscale_msspacev1M -Y log
 ```
 
@@ -107,7 +111,6 @@ bash run_10M_builds.sh
 After the run concludes, use the following commands to generate plots:
 
 ```bash
-sudo chmod -R 777 results/
 bash create_10M_plots.sh
 ```
 
@@ -122,7 +125,6 @@ python3.10 create_dataset.py --dataset bigann-100M
 python3.10 create_dataset.py --dataset msspacev-100M
 python3.10 create_dataset.py --dataset text2image-100M
 bash run_100M_builds.sh
-sudo chmod -R 777 results/
 bash create_100M_plots.sh
 ```
 
@@ -131,7 +133,6 @@ You might also wish to run a single build algorithm on one dataset instead of al
 ```bash
 python3.10 create_dataset.py --dataset bigann-100M 
 python3.10 run.py --algorithm ParDiskANN --dataset bigann-100M --definitions artifact_eval.yaml --rebuild
-sudo chmod -R 777 results/
 python3.10 plot.py --dataset bigann-100M --y-scale log --out results/QPS_bigann_100M
 ```
 
