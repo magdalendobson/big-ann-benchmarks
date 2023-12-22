@@ -32,6 +32,9 @@ def create_plot(all_data, raw, x_scale, y_scale, xn, yn, fn_out, linestyles):
         min_x = min([min_x]+[x for x in xs if x > 0])
         max_x = max([max_x]+[x for x in xs if x < 1])
         color, faded, linestyle, marker = linestyles[algo]
+        print("Algorithm: ", algo)
+        print("QPS: ", xs)
+        print("Recall: ", ys)
         handle, = plt.plot(xs, ys, '-', label=algo, color=color,
                            ms=7, mew=3, lw=3, linestyle=linestyle,
                            marker=marker)

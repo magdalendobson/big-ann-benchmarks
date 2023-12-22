@@ -90,6 +90,8 @@ def run(definition, dataset, count, run_count, rebuild,
             print("Starting query")
             print("Threads at query time: ", os.environ.get('PARLAY_NUM_THREADS'))
             threads = os.environ.get('PARLAY_NUM_THREADS')
+            if(threads == None):
+                threads = 0
             query_argument_groups = definition.query_argument_groups
             # Make sure that algorithms with no query argument groups still get run
             # once by providing them with a single, empty, harmless group

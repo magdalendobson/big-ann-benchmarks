@@ -299,6 +299,29 @@ class SSNPPDataset(DatasetCompetitionFormat):
         fn = self.private_gt_url.split("/")[-1]   # in case it's a URL
         return range_result_read(os.path.join(self.basedir, fn))
 
+class SSNPP_NN_Dataset(DatasetCompetitionFormat):
+    def __init__(self, nb_M=1000):
+        # assert nb_M in (10, 1000)
+        self.nb_M = nb_M
+        self.nb = 10**6 * nb_M
+        self.d = 256
+        self.nq = 2578
+        self.dtype = "uint8"
+        self.ds_fn = "FB_ssnpp_database.u8bin"
+        self.qs_fn = "ssnpp_nonzero.u8bin"
+        self.gt_fn = (
+            "ssnpp-nonzero-1M" if self.nb_M == 1 else
+            "ssnpp-nonzero-10M" if self.nb_M == 10 else
+            None
+        )
+
+        self.base_url = "https://dl.fbaipublicfiles.com/billion-scale-ann-benchmarks/"
+        self.basedir = os.path.join(BASEDIR, "FB_ssnpp")
+
+
+    def distance(self):
+        return "euclidean"
+
 class BigANNDataset(DatasetCompetitionFormat):
     def __init__(self, nb_M=1000):
         self.nb_M = nb_M
@@ -325,6 +348,8 @@ class BigANNDataset(DatasetCompetitionFormat):
 
     def distance(self):
         return "euclidean"
+
+
 
 class Deep1BDataset(DatasetCompetitionFormat):
     def __init__(self, nb_M=1000):
@@ -1009,6 +1034,11 @@ DATASETS = {
     'ssnpp-10M': lambda : SSNPPDataset(10),
     'ssnpp-100M': lambda : SSNPPDataset(100),
     'ssnpp-1M': lambda : SSNPPDataset(1),
+
+    'ssnpp-nn-1B': lambda : SSNPP_NN_Dataset(1000),
+    'ssnpp-nn-10M': lambda : SSNPP_NN_Dataset(10),
+    'ssnpp-nn-100M': lambda : SSNPP_NN_Dataset(100),
+    'ssnpp-nn-1M': lambda : SSNPP_NN_Dataset(1),
 
     'text2image-1B': lambda : Text2Image1B(),
     'text2image-1M': lambda : Text2Image1B(1),

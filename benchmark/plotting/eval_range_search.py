@@ -48,7 +48,10 @@ def counts_to_PR(ngt, nres, ninter, mode="overall"):
         ngt, nres, ninter = ngt.sum(), nres.sum(), ninter.sum()
 
         if nres > 0:
+            # print("nres: ", nres)
+            # print("ninter: ", ninter)
             precision = ninter / nres
+            # print("precision: ", precision)
         else:
             precision = 1.0
 
@@ -58,6 +61,8 @@ def counts_to_PR(ngt, nres, ninter, mode="overall"):
             recall = 1.0
         else:
             recall = 0.0
+
+        
 
         return precision, recall
 
@@ -118,6 +123,11 @@ def range_PR_multiple_thresholds(
     """ compute precision-recall values for range search results
     for several thresholds on the "new" results.
     This is to plot PR curves
+    lims_ref = ground truth num results for range search
+    Iref = ground truth ids for range search
+    lims_new = reported num results
+    Dnew = distances for reported results
+    Inew = reported ids
     """
     # ref should be sorted by ids
     if "ref" in do_sort:
@@ -196,16 +206,22 @@ def compute_AP(gt, res):
     res_lims, res_I, res_D = res
 
     if len(res_D) == 0:
+        print("res length is zero")
         return 0.0
 
     # start with negative distance to be sure to have the
     # (p, r) = (1, 0) point
     dmax = res_D.max()
-    thresholds = np.linspace(-0.001, res_D.max(), 100)
+    thresholds = np.linspace(-0.001, res_D.max(), 2)
+    print(thresholds)
 
     precisions, recalls = range_PR_multiple_thresholds(
         gt_lims, gt_I,
         res_lims, res_D, res_I, thresholds)
+    print(precisions)
+    print(recalls)
+    
+    # print(precisions.mean())
 
     # compute average precision using trapezoids
     accu = 0
@@ -216,5 +232,6 @@ def compute_AP(gt, res):
         accu += (x1 - x0) * (y1 + y0) / 2
 
     return accu
+    # return precisions.mean()
 
 
