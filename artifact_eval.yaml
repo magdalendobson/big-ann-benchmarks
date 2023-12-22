@@ -1,6 +1,6 @@
 random-xs:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -11,7 +11,7 @@ random-xs:
           query-args: |
             [{"Ls":10}, {"Ls":50}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -22,7 +22,7 @@ random-xs:
           query-args: |
             [{"Ls":10}, {"Ls":50}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -33,7 +33,7 @@ random-xs:
           query-args: |
             [{"Ls":10}, {"Ls":50}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -45,7 +45,7 @@ random-xs:
             [{"Ls":10}, {"Ls":50}]
 bigann-10M:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -89,7 +89,7 @@ bigann-10M:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -133,7 +133,7 @@ bigann-10M:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -177,7 +177,7 @@ bigann-10M:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -222,7 +222,7 @@ bigann-10M:
             {"Ls":1000}]
 bigann-100M:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -266,7 +266,7 @@ bigann-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -310,7 +310,7 @@ bigann-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -354,7 +354,7 @@ bigann-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -399,7 +399,7 @@ bigann-100M:
             {"Ls":1000}]
 bigann-1B:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -443,7 +443,7 @@ bigann-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -487,7 +487,7 @@ bigann-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -531,7 +531,7 @@ bigann-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -576,7 +576,7 @@ bigann-1B:
             {"Ls":1000}]
 msspacev-1M:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -604,7 +604,7 @@ msspacev-1M:
             {"Ls":500},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -632,7 +632,7 @@ msspacev-1M:
             {"Ls":500},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -660,7 +660,7 @@ msspacev-1M:
             {"Ls":500},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -689,7 +689,7 @@ msspacev-1M:
             {"Ls":1000}]
 msspacev-10M:
   ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -733,7 +733,7 @@ msspacev-10M:
             {"Ls":750},
             {"Ls":1000}]
   ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -777,7 +777,7 @@ msspacev-10M:
             {"Ls":750},
             {"Ls":1000}]
   ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -821,7 +821,7 @@ msspacev-10M:
             {"Ls":750},
             {"Ls":1000}]
   ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -866,7 +866,7 @@ msspacev-10M:
             {"Ls":1000}]
 msspacev-100M:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -910,7 +910,7 @@ msspacev-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -954,7 +954,7 @@ msspacev-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -998,7 +998,7 @@ msspacev-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -1043,7 +1043,7 @@ msspacev-100M:
             {"Ls":1000}]
 msspacev-1B:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -1087,7 +1087,7 @@ msspacev-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -1131,7 +1131,7 @@ msspacev-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -1175,7 +1175,7 @@ msspacev-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -1220,7 +1220,7 @@ msspacev-1B:
             {"Ls":1000}]
 text2image-10M:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -1264,7 +1264,7 @@ text2image-10M:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -1308,7 +1308,7 @@ text2image-10M:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -1352,7 +1352,7 @@ text2image-10M:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -1408,7 +1408,7 @@ text2image-10M:
               [{"Ls":50, "BW":4, "T":16}]
 text2image-100M:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -1452,7 +1452,7 @@ text2image-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -1496,7 +1496,7 @@ text2image-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -1540,7 +1540,7 @@ text2image-100M:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
@@ -1585,7 +1585,7 @@ text2image-100M:
             {"Ls":1000}]
 text2image-1B:
     ParDiskANN:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
       constructor: vamana
       base-args: ["@metric"]
@@ -1629,7 +1629,7 @@ text2image-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParHCNNG:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
       constructor: hcnng
       base-args: ["@metric"]
@@ -1673,7 +1673,7 @@ text2image-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParPyNNDescent:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
       constructor: pynndescent
       base-args: ["@metric"]
@@ -1717,7 +1717,7 @@ text2image-1B:
             {"Ls":750},
             {"Ls":1000}]
     ParHNSW:
-      docker-tag: billion-scale-benchmark-parlayann-artifact
+      docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
       constructor: hnsw
       base-args: ["@metric"]
