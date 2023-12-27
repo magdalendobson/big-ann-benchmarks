@@ -176,9 +176,8 @@ class DatasetCompetitionFormat(Dataset):
     def get_dataset_fn(self):
         fn = os.path.join(self.basedir, self.ds_fn)
         if os.path.exists(fn):
-            return fn
-        if self.nb != 10**9:
-            fn += '.crop_nb_%d' % self.nb
+            if self.nb != 10**9:
+                fn += '.crop_nb_%d' % self.nb
             return fn
         else:
             raise RuntimeError("file not found")

@@ -75,7 +75,9 @@ class vamana(BaseOODANN):
             start = time.time()
             # ds.ds_fn is the name of the dataset file but probably needs a prefix
             # choosing 1.2 for alpha but this is probably provided in index_params
+            print(ds.get_dataset_fn())
             pann.build_vamana_index(self._metric, self.translate_dtype(ds.dtype), ds.get_dataset_fn(), index_dir, self.R, self.L, self.alpha, self.two_pass)
+            
             end = time.time()
             print("Indexing time: ", end - start)
             print(f"Wrote index to {index_dir}")
