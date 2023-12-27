@@ -18,10 +18,11 @@ The only prerequisite is Python3.10 and Docker. All commands are assumed to be r
 2. Run `pip install -r requirements_py3.10.txt` 
 3. Install docker by following instructions [here](https://docs.docker.com/engine/install/ubuntu/).
 You should also to follow the post-install steps for running docker in non-root user mode.
-4. Install the necessary Docker images as follows:
+4. Install the necessary Docker images as follows (note the presence of two images now):
 
 ```bash
 python3.10 install.py --algorithm parlayann
+python3.10 install.py --algorithm parlayann-artifact
 ```
 
 ### Datasets
