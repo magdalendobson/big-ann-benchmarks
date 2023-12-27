@@ -21,7 +21,7 @@ You should also to follow the post-install steps for running docker in non-root 
 4. Install the necessary Docker images as follows:
 
 ```bash
-python3.10 install.py --algorithm parlayann-artifact
+python3.10 install.py --algorithm parlayann
 ```
 
 ### Datasets
@@ -70,12 +70,14 @@ First, download the dataset:
 
 ```bash
 python3.10 create_dataset.py --dataset msspacev-1M
+python3.10 create_dataset.py --dataset bigann-1M
 ```
 
 The next script builds the graph for each algorithm on [1,2,8,16,24,32,48,64,96] threads. If your evaluation machine has fewer threads, you can access the script and comment out the lines corresponding to the thread counts you wish to exclude. Note that if you are monitoring thread usage using e.g. `htop`, some of the steps outside building (e.g. loading the dataset, saving and loading the graph, etc.) may still use all available threads. 
 
 ```bash
 bash thread_scaling.sh
+bash thread_scaling_bigann.sh
 
 ```
 
@@ -84,9 +86,10 @@ After the run concludes, use the following commands to generate the plot:
 ```bash
 sudo chmod -R 777 results/
 python3.10 plot.py --dataset msspacev-1M -x threads -y build --out results/threadscale_msspacev1M -Y log
+python3.10 plot.py --dataset bigann-1M -x threads -y build --out results/threadscale_bigann1M -Y log
 ```
 
-You should find the plot in the `results` folder. It should be titled `threadscale_msspacev1M.png`
+You should find the plot in the `results` folder. It should be titled `threadscale_msspacev1M.png` and/or `threadscale_bigann1M.png`
 
 ### Ten Million Scale QPS/Recall Plots (Figure 3)
 

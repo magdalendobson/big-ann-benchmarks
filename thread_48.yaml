@@ -55,3 +55,48 @@ msspacev-1M:
               [{"m":32, "efc":128, "ml":0.36, "alpha":0.83, "T":48}]
           query-args: |
             [{"Ls":100}]
+bigann-1M:
+    ParDiskANN:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.vamana
+      constructor: vamana
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"R":64, "L":128, "alpha":1.2, "two_pass":0, "T":48}]
+          query-args: |
+            [{"Ls":100}]
+    ParHCNNG:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hcnng
+      constructor: hcnng
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"mst_deg":3, "num_clusters":50, "cluster_size":1000, "T":48}]
+          query-args: |
+            [{"Ls":100}]
+    ParPyNNDescent:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.pynndescent
+      constructor: pynndescent
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"max_deg":60, "num_clusters":10, "cluster_size":1000, "alpha":1.2, "delta":0.05, "T":48}]
+          query-args: |
+            [{"Ls":100}]
+    ParHNSW:
+      docker-tag: billion-scale-benchmark-parlayann-artifact
+      module: benchmark.algorithms.hnsw
+      constructor: hnsw
+      base-args: ["@metric"]
+      run-groups:
+        base:
+          args: |
+              [{"m":32, "efc":128, "ml":0.36, "alpha":0.83, "T":48}]
+          query-args: |
+            [{"Ls":100}]

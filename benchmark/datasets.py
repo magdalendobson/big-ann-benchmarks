@@ -335,6 +335,7 @@ class BigANNDataset(DatasetCompetitionFormat):
             "GT.public.1B.ibin" if self.nb_M == 1000 else
             subset_url + "GT_100M/bigann-100M" if self.nb_M == 100 else
             subset_url + "GT_10M/bigann-10M" if self.nb_M == 10 else
+            subset_url + "GT_10M/bigann-10M" if self.nb_M == 1 else #hack
             None
         )
         # self.gt_fn = "https://comp21storage.z5.web.core.windows.net/comp21/bigann/public_query_gt100.bin" if self.nb == 10**9 else None
