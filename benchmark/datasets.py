@@ -1025,6 +1025,7 @@ DATASETS = {
     'bigann-1B': lambda : BigANNDataset(1000),
     'bigann-100M': lambda : BigANNDataset(100),
     'bigann-10M': lambda : BigANNDataset(10),
+    'bigann-1M' : lambda : BigANNDataset(1),
 
     'deep-1B': lambda : Deep1BDataset(),
     'deep-100M': lambda : Deep1BDataset(100),
