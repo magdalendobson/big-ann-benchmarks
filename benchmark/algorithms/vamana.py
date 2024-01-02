@@ -111,6 +111,7 @@ class vamana(BaseOODANN):
 
         if(file_size != 0):
             try:
+                print(ds.get_dataset_fn())
                 self.index = pann.load_index(self._metric, self.translate_dtype(ds.dtype), ds.get_dataset_fn(), index_dir, ds.nb, d)
                 print("Index loaded")
                 return True
