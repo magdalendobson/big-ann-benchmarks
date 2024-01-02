@@ -179,7 +179,7 @@ class DatasetCompetitionFormat(Dataset):
             fn += '.crop_nb_%d' % self.nb
             if os.path.exists(fn):
                 return fn
-        else if self.nb == 10**9:
+        elif self.nb == 10**9:
             if os.path.exists(fn):
                 return fn
         else:
