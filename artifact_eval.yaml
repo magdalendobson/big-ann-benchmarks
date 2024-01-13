@@ -1960,9 +1960,7 @@ text2image-100M:
       run-groups:
         base:
           args: |
-              [{"indexkey": "OPQ64_128,IVF65536_HNSW32,PQ128x4fsr",
-                }]
-          # Trying all combinations of nprobe x efSearch
+              [{"indexkey": "OPQ64_128,IVF65536_HNSW32,PQ128x4fsr"}]
           query-args: |
               ["nprobe=1,quantizer_efSearch=4,ht=106",
               "nprobe=1,quantizer_efSearch=16,ht=114",
