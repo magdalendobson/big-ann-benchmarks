@@ -2170,7 +2170,7 @@ text2image-1B:
       run-groups:
         base:
           args: |
-              [{"indexkey": "OPQ64_128,IVF1048576_HNSW32,PQ128x4fsr",
+              [{"indexkey": "OPQ64_128,IVF1048576_HNSW32,PQ128x4fsr"
                 }]
           # Trying all combinations of nprobe x efSearch
           query-args: |
