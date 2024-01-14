@@ -25,6 +25,7 @@ class pynndescent(BaseOODANN):
         default_threads = os.cpu_count()
         threads = int(index_params.get("T", default_threads))
         self.threads = threads
+        self.stats = {}
         os.environ['PARLAY_NUM_THREADS'] = str(min(threads, os.cpu_count()))
         print("Threads: ", threads)
         print(os.environ.get('PARLAY_NUM_THREADS'))
@@ -82,7 +83,13 @@ class pynndescent(BaseOODANN):
 
     def query(self, X, k):
         nq, d = X.shape
-        self.res, self.query_dists = self.index.batch_search(X, nq, k, self.Ls, self.visit)
+        to_unpack, total_dist_cmps = self.index.batch_search(X, nq, k, self.Ls, self.visit)
+        self.res, self.query_dists = to_unpack
+        self.stats["dist_comps"] = total_dist_cmps
+        self.stats["mean_dist_comps"] = total_dist_cmps/nq
+
+    def get_additional(self):
+        return self.stats
 
     def set_query_arguments(self, query_args):
         self._query_args = query_args
