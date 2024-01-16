@@ -1586,7 +1586,10 @@ msspacev-1B:
               "nprobe=256,quantizer_efSearch=256",
               "nprobe=256,quantizer_efSearch=512",
               "nprobe=512,quantizer_efSearch=512",
-              "nprobe=1024,quantizer_efSearch=512"]
+              "nprobe=1024,quantizer_efSearch=512",
+              "nprobe=2048,quantizer_efSearch=512",
+              "nprobe=3000,quantizer_efSearch=512",
+              "nprobe=4096,quantizer_efSearch=512",]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
@@ -1630,7 +1633,10 @@ msspacev-1B:
             {"Ls":400},
             {"Ls":500},
             {"Ls":750},
-            {"Ls":1000}]
+            {"Ls":1000},
+            {"Ls":2000},
+            {"Ls":3000},
+            {"Ls":4000}]
     ParHCNNG:
       docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hcnng
@@ -1674,7 +1680,10 @@ msspacev-1B:
             {"Ls":400},
             {"Ls":500},
             {"Ls":750},
-            {"Ls":1000}]
+            {"Ls":1000},
+            {"Ls":2000},
+            {"Ls":3000},
+            {"Ls":4000}]
     ParPyNNDescent:
       docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.pynndescent
@@ -1718,7 +1727,10 @@ msspacev-1B:
             {"Ls":400},
             {"Ls":500},
             {"Ls":750},
-            {"Ls":1000}]
+            {"Ls":1000},
+            {"Ls":2000},
+            {"Ls":3000},
+            {"Ls":4000}]
     ParHNSW:
       docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.hnsw
@@ -1762,7 +1774,10 @@ msspacev-1B:
             {"Ls":400},
             {"Ls":500},
             {"Ls":750},
-            {"Ls":1000}]
+            {"Ls":1000},
+            {"Ls":2000},
+            {"Ls":3000},
+            {"Ls":4000}]
 text2image-10M:
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann
