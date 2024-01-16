@@ -1589,7 +1589,7 @@ msspacev-1B:
               "nprobe=1024,quantizer_efSearch=512",
               "nprobe=2048,quantizer_efSearch=512",
               "nprobe=3000,quantizer_efSearch=512",
-              "nprobe=4096,quantizer_efSearch=512",]
+              "nprobe=4096,quantizer_efSearch=512"]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
