@@ -1,0 +1,10 @@
+FROM billion-scale-benchmark
+
+RUN apt update && apt install -y clang-format
+
+RUN git clone --recurse-submodules https://github.com/DapperX/FALCONN_ANNS.git && cd FALCONN_ANNS/src/python/wrapper && python3 gen.py && cd ../../../ && pip install pybind11 && python3 src/python/package/setup.py install
+
+
+ENV PYTHONPATH=$PYTHONPATH:/home/app/FALCONN_ANNS/src/python/package
+
+WORKDIR /home/app
