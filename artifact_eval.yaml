@@ -102,14 +102,20 @@ bigann-1M:
       run-groups:
         base:
           args: |
-              [{"args":0}]
+              [{}]
           query-args: |
-            [{"num_probes":10, "max_num_cand":2000},
-            {"num_probes":10, "max_num_cand":5000},
-            {"num_probes":10, "max_num_cand":10000},
-            {"num_probes":10, "max_num_cand":30000},
-            {"num_probes":10, "max_num_cand":60000},
-            {"num_probes":10, "max_num_cand":100000}]
+            [{"num_probes":30, "max_num_cand":2000},
+            {"num_probes":30, "max_num_cand":5000},
+            {"num_probes":30, "max_num_cand":10000},
+            {"num_probes":30, "max_num_cand":20000},
+            {"num_probes":30, "max_num_cand":50000},
+            {"num_probes":30, "max_num_cand":100000},
+            {"num_probes":35, "max_num_cand":100000},
+            {"num_probes":43, "max_num_cand":1000000},
+            {"num_probes":60, "max_num_cand":1000000},
+            {"num_probes":103, "max_num_cand":1000000},
+            {"num_probes":172, "max_num_cand":1000000},
+            {"num_probes":237, "max_num_cand":1000000}]
     ParDiskANN:
       docker-tag: billion-scale-benchmark-parlayann
       module: benchmark.algorithms.vamana
